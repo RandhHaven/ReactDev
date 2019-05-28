@@ -1,6 +1,9 @@
 import React, {Component} from 'react'; 
 import './AccessLogin.css';
-import AddContact from './AddContact.js'
+//import AddContact from './AddContact.js'
+import firebase from 'firebase'
+import {firebaseConfig} from './config/db_config.js'
+import 'firebase/database'
 
 class AccessLogin extends Component
 {
@@ -8,6 +11,7 @@ class AccessLogin extends Component
     {
         super(props);
         this.state = {email: 'Inicio'};
+        this.accessLogin = firebase.initializeApp(firebaseConfig);
     }
 
     validations(event)
