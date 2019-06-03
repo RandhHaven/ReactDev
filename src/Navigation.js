@@ -11,10 +11,6 @@ class Navigation extends Component {
 
   onResponseNavigation(event)
   {
-    /*if (event.target.value == 'Login')
-    {
-      //new render(<AccesLogin/>);
-    }*/
     this.setState({value: event.target.value});
   }
   

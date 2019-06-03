@@ -10,8 +10,15 @@ class AccessLogin extends Component
     constructor(props)
     {
         super(props);
-        this.state = {email: 'Inicio'};
-        this.accessLogin = firebase.initializeApp(firebaseConfig);
+        this.state = {
+            dbusuarios :[                
+            ]
+        };
+        this.txtUsername = React.createRef();
+        this.txtPassword = React.createRef();
+        this.handleClick = this.handleClick.bind(this);
+        this.app = firebase.initializeApp(firebaseConfig);
+        this.db = this.app.database().ref().child('dbusuarios');
     }
 
     validations(event)
@@ -20,8 +27,33 @@ class AccessLogin extends Component
     }
 
     handleClick()
+    {  
+        //this.dbusuarios =  {usuId: this.txtUsername, usuContent:this.txtPassword}
+        
+        console.log(this.txtUsername.value);
+        this.db.push().set(
+            {
+                usuUsername: this.txtUsername.value,
+                usuPassword: this.txtPassword.value
+            }            
+        );
+        this.txtUsername.value = '';
+        this.txtPassword.value = '';
+        this.txtUsername.focus();
+    }
+
+    componentDidMount(event)
     {
-         alert('Usuario Logueado'); 
+        const {dbusuarios} = this.state;
+        this.db.on('child_added', snap =>
+        {
+            dbusuarios.push({
+                usuId: snap.key.value,
+                usuUsername: snap.val().usuUsername,
+                usuPassword: snap.val().usuPassword
+            })
+            this.setState(dbusuarios);
+        });
     }
 
     onClickRef()
@@ -34,10 +66,14 @@ class AccessLogin extends Component
                 <div className="AccessLogin-Form">               
                     <h1>Please enter your username here: </h1>
                     <br/>
-                    <label> User or Mail: <input type="text"/>
+                    <label> User or Mail: <input
+                        ref ={input => {this.txtUsername = input;}}
+                        type="text"/>
                     </label>
                     <br/>
-                    <label> Password: <input type="password"/>
+                    <label> Password: <input
+                        ref ={input => {this.txtPassword = input;}}
+                        input type="password"/>
                     </label>
                     <br/>                    
                     <a href="" onClick={this.onClickRef}>He olvidado mi contraseña</a>
