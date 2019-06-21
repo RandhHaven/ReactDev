@@ -1,0 +1,24 @@
+{
+    "menus": [
+        {
+            "id": 1,
+            "title": "Home",
+            "description":"Home"
+        },
+        {
+            "id": 2,
+            "title": "News",
+            "description":"News"
+        },
+        {
+            "id": 3,
+            "title": "Contact",
+            "description":"Contact"
+        },
+        {
+            "id": 4,
+            "title": "Login",
+            "description":"Login"
+        }
+    ]
+}

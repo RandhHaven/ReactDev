@@ -27,9 +27,7 @@ class AccessLogin extends Component
     }
 
     handleClick()
-    {  
-        //this.dbusuarios =  {usuId: this.txtUsername, usuContent:this.txtPassword}
-        
+    {      
         console.log(this.txtUsername.value);
         this.db.push().set(
             {
@@ -45,19 +43,23 @@ class AccessLogin extends Component
     componentDidMount(event)
     {
         const {dbusuarios} = this.state;
-        this.db.on('child_added', snap =>
-        {
-            dbusuarios.push({
-                usuId: snap.key.value,
-                usuUsername: snap.val().usuUsername,
-                usuPassword: snap.val().usuPassword
-            })
-            this.setState(dbusuarios);
-        });
+        if (dbusuarios != null)
+        {           
+            this.db.on('child_added', snap =>
+            {
+                dbusuarios.push({
+                    usuId: snap.key.value,
+                    usuUsername: snap.val().usuUsername,
+                    usuPassword: snap.val().usuPassword
+                })
+                this.setState(dbusuarios);
+            });
+        }
     }
 
     onClickRef()
-    {}
+    {
+    }
 
     render()
     {

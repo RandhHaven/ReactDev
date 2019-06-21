@@ -11,8 +11,7 @@ class AddContact extends Component
     render(){
         return(
             <form>
-                <div className="AddContact-div">
-                                      
+                <div className="AddContact-div">                                      
                     <label> Country:
                     <select className="AccessLogin-Country">
                         <option value="#Argentina">Argentina</option>
