@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import './Navigation.css';
 import AccesLogin from './AccessLogin.js'
 import Home from './Home.js'
+import AddContact from './AddContact.js'
 import { menus }  from './Menus.json'
-import { Router, Switch, Route, Link } from 'react-router';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 class Navigation extends Component {
   
@@ -29,31 +30,38 @@ class Navigation extends Component {
     const menus = this.state.menus.map((menu, i) =>{
       return (
         <div className="Nav">
-          {menu.description}
+          <li>
+            {menu.description}
+          </li>
+         
         </div>
       )
     })
 
     return(<form>
-        <nav className="Nav">
+       <nav className="Nav">
           <a className="Nav-Orientacion" href="">
             {menus}
           </a>
         </nav>
+       
         <ul className="Nav">
-          <li><a className="Nav-Orientacion" href='.\Home.js' onKeyPress={this.onResponseNavigation}>Home</a></li>
-          <li><a className="Nav-Orientacion" href="#news">Noticias</a></li>
-          <li><a className="Nav-About" href="#contact">Contacto</a></li>
+          <li><a className="Nav-Orientacion" href='\Home'>Home</a></li>
+          <li><a className="Nav-Orientacion" href="#news">News</a></li>
+          <li><a className="Nav-Orientacion" href="\AddContact">Contact</a></li>
           <li className="Nav-About">
-            <a class="Nav-Active" href=".\AccesLogin.js" onKeyPress={this.onResponseNavigation}>Login</a>
+            <a class="Nav-Active" href="\AccesLogin">Login</a>
           </li>
         </ul>
-        <Switch>
-              <Route exact path='/' component={Home} />
-              <Route path='/AccesLogin' component={AccesLogin} />
-        </Switch>
+        <BrowserRouter>
+          <Switch>
+            <Route path='/Home' component={Home} />
+            <Route path='/AddContact' component={AddContact} />
+            <Route path='/AccesLogin' component={AccesLogin} />
+          </Switch>
+        </BrowserRouter>
+        
         <br/>
-        <Home/>
         </form>
       )
     }  

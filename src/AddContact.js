@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './AddContact.css'
 
 class AddContact extends Component
 {
@@ -6,7 +7,6 @@ class AddContact extends Component
     {
         
     }*/
-    
 
     render(){
         return(
