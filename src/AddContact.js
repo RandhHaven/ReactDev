@@ -22,8 +22,7 @@ class AddContact extends Component
                     </label>
                     <br/>
                     <label>
-                        Is Administrator:
-                      
+                        Is Administrator:                      
                     </label>
                     <br/>                 
                     <label> Mail: <input id="email" type="text"/>

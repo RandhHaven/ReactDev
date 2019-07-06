@@ -64,26 +64,51 @@ class AccessLogin extends Component
     render()
     {
         return(
-            <form>
-                <div className="AccessLogin-Form">               
-                    <h1>Please enter your username here: </h1>
-                    <br/>
-                    <label> User or Mail: <input
-                        ref ={input => {this.txtUsername = input;}}
-                        type="text"/>
-                    </label>
-                    <br/>
-                    <label> Password: <input
-                        ref ={input => {this.txtPassword = input;}}
-                        input type="password"/>
-                    </label>
-                    <br/>                    
-                    <a href="" onClick={this.onClickRef}>He olvidado mi contraseña</a>
-                    <br/>
-                    <br/>                    
-                    <button className="btn btn-success center-block" type="button" onClick={this.handleClick}>Login</button>
-                </div>            
-            </form>
+            <div class="container">
+                <div class="row pt-5">
+                    <div class="col-md-3"/>
+                    <div class="col-md-6">
+                        <div class="card">   
+                            <div class="card-header">
+                                <h4>LOGIN </h4> 
+                            </div>
+                            <form id="login-form" class="card-body">                                                 
+                                <div className="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label> User or Mail: </label>
+                                            </div>
+                                        <div class="col-md-8">  
+                                        <input
+                                            ref ={input => {this.txtUsername = input;}}
+                                            type="text" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                <div className="form-group">
+                                <div class="row">
+                                        <div class="col-md-4">
+                                            <label> Password: </label>
+                                            </div>
+                                        <div class="col-md-8">  
+                                        <input
+                                        ref ={input => {this.txtPassword = input;}}
+                                        input type="password" class="form-control"/>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div className="form-group">
+                                    <a href="" onClick={this.onClickRef}>He olvidado mi contraseña</a>  
+                                </div>                                      
+                                
+
+                                <button className="btn btn-success center-block" type="button" onClick={this.handleClick}>Login</button>                                        
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-3"/>
+                </div>
+            </div>            
         );
     }
 }
