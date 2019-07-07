@@ -9,11 +9,10 @@ class App extends Component {
       <div className="App">
        <Navigation/>
         <footer>
-          <img src={logo} className="App-logo" alt="logo" />         
+          <img src={logo} className="App-logo" alt="logo" />
         </footer>       
       </div>
     );
   }
 }
-
 export default App;

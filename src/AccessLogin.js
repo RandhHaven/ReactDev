@@ -66,11 +66,11 @@ class AccessLogin extends Component
         return(
             <div class="container">
                 <div class="row pt-5">
-                    <div class="col-md-3"/>
-                    <div class="col-md-6">
-                        <div class="card">   
+                    <div class="col-md-4"/>
+                    <div class="col-md-4">
+                    <div class="card">
                             <div class="card-header">
-                                <h4>LOGIN </h4> 
+                                <h4> LOGIN </h4> 
                             </div>
                             <form id="login-form" class="card-body">                                                 
                                 <div className="form-group">
@@ -97,16 +97,17 @@ class AccessLogin extends Component
                                         </div>
                                     </div>                                   
                                 </div>
+                                <div>
+                                    <a href="" onclick={this.onclickRegeister}> No account? Create one!</a>
+                                </div>
                                 <div className="form-group">
                                     <a href="" onClick={this.onClickRef}>He olvidado mi contraseña</a>  
-                                </div>                                      
-                                
-
-                                <button className="btn btn-success center-block" type="button" onClick={this.handleClick}>Login</button>                                        
+                                </div>
+                                <button className="btn btn-primary center-block" type="button" onClick={this.handleClick}>Login</button>                                        
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-3"/>
+                    <div class="col-md-4"/>
                 </div>
             </div>            
         );
