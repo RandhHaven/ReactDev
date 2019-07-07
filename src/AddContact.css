@@ -1,4 +1,21 @@
-.AddContact-div {    
-    margin: 10%;
-    font: 400;
+.AddContact-div {   
+    width: 80%;
+    margin: 2%;
   }  
+
+
+.AddContact-header {  
+  margin: 10%;
+  color: #03092c;
+  border-width: 1px;
+  border-bottom: 1px solid #ccc;
+}  
+
+.AddContact-col1 {   
+  width: 30%;
+}  
+
+
+.AddContact-col2 {   
+  width: 30%;
+}  
