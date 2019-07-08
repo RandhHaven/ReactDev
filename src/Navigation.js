@@ -24,7 +24,7 @@ class Navigation extends Component {
           <li><a className="Nav-Orientacion" href="#news">News</a></li>
           <li><a className="Nav-Orientacion" href="\Contact">Contact</a></li>
           <li className="Nav-About">
-            <a class="Nav-Active" href="\AccesLogin">Login</a>
+            <a className="Nav-Active" href="\AccesLogin">Login</a>
           </li>
         </ul>
         <BrowserRouter>

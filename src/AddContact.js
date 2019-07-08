@@ -7,16 +7,29 @@ class AddContact extends Component
     {
         super(props);
         this.state = {
-            nombre: '',
-            apellido: '',
-            eded: ''
-          };
+            username: '',
+            surname: '',
+            mail: '',
+            mailConfirm: '',
+            country: ''
+        };
+        this.onChange = this.onChange.bind(this);
+        this.handleAddContact = this.handleAddContact.bind(this);
     }
 
-    onClickAddContact(){
-
+    handleAddContact(event) {
+        console.log(this.state);
+        alert('A name was submitted: ' + this.state.username);
+        event.preventDefault();
+        //console.log
+       
     }
-
+    
+    onChange(event){
+        this.setState({
+            [event.target.name] : event.target.value,
+        });
+    }
 
     render(){
         return(
@@ -28,42 +41,62 @@ class AddContact extends Component
                             <div className="card-header">
                                 <h4> Add Contact </h4> 
                             </div>
-                            <form id="login-form" class="card-body" onSubmit={this.handleSubmit}> 
+                            <form id="login-form" class="card-body" onSubmit={this.handleAddContact}> 
                                 <div class="form-group">
                                     <div class="row pt-2">                                        
                                         <div class="col-md-2">
-                                            <label> Nombre: </label>
+                                            <label> User: </label>
                                         </div>
                                         <div className="col-md-4">
-                                            <input id="nombre" type="text" class="form-control"/>
+                                            <input name="user" type="text" class="form-control"
+                                            value={this.state.user} onChange={this.onChange}/>
                                         </div>
                                         <div class="col-md-2">
-                                            <label> Apellido: </label>
+                                            <label> Password: </label>
                                         </div>
                                         <div className="col-md-4">
-                                            <input id="apellido" type="text" class="form-control"/>
+                                            <input name="password" type="password" class="form-control"
+                                            value={this.state.password} onChange={this.onChange}/>
+                                        </div>                                    
+                                    </div>
+                                    <div class="row pt-2">                                        
+                                        <div class="col-md-2">
+                                            <label> Name: </label>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <input name="username" type="text" class="form-control"
+                                            value={this.state.username} onChange={this.onChange}/>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label> Surname: </label>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <input name="surname" type="text" class="form-control"
+                                            value={this.state.surname} onChange={this.onChange}/>
                                         </div>                                        
                                     </div>
                                     <div class="row pt-2">
-                                    <div class="col-md-2">
+                                        <div class="col-md-2">
                                             <label> Mail: </label>
                                         </div>
                                         <div className="col-md-4">
-                                            <input id="mail" type="text" class="form-control"/>
+                                            <input name="mail" type="text" class="form-control"
+                                            value={this.state.mail} onChange={this.onChange}/>
                                         </div>
                                         <div class="col-md-2">
                                             <label> Confirm Mail: </label>
                                         </div>
                                         <div className="col-md-4">
-                                            <input id="mailConfirm" type="text" class="form-control"/>
+                                            <input name="mailConfirm" type="text" class="form-control"
+                                            value={this.state.mailConfirm} onChange={this.onChange}/>
                                         </div>         
                                     </div>
                                     <div class="row pt-2">
                                         <div class="col-md-2">
-                                            <label> Country: </label>
+                                            <label>Country: </label>
                                         </div>
                                         <div className="col-md-4">
-                                            <select class="form-control">
+                                            <select name="selectCountry" value={this.state.country} class="form-control" onChange={this.onChange}>
                                                 <option value="#Argentina">Argentina</option>
                                                 <option value="#Brasil">Brasil</option>
                                                 <option value="#Alemania">Alemania</option>
@@ -71,21 +104,19 @@ class AddContact extends Component
                                             </select>
                                         </div>
                                         <div class="col-md-2">
-                                            <label>Administrator:  </label>
+                                            <label>Administrator:</label>
                                         </div>
                                         <div className="col-md-4">
                                             <input id="isAdministrator" name="isAdministrator" type="checkbox"/>
-                                        </div>    
-                                        
-                                    </div>                                  
-                                    
+                                        </div>                                        
+                                    </div>
                                 </div>
-                                <button className="btn btn-primary center-block" type="button" onClick={this.onClickAddContact}>Ingresar</button>  
+                                <input className="btn btn-primary center-block" type="submit" value="Submit" />
                             </form>
+                            
                         </div>
                     </div>
-                    <div class="col-md-2"/>
-                    <form></form>
+                    <div class="col-md-2"/>                    
                 </div>
             </div>
         )
