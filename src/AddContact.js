@@ -7,11 +7,13 @@ class AddContact extends Component
     {
         super(props);
         this.state = {
-            username: '',
+            user: '',
+            username: '',            
+            cellphone: '',
             surname: '',
             mail: '',
-            mailConfirm: '',
-            country: ''
+            date: '',
+            selectCountry: ''
         };
         this.onChange = this.onChange.bind(this);
         this.handleAddContact = this.handleAddContact.bind(this);
@@ -19,16 +21,19 @@ class AddContact extends Component
 
     handleAddContact(event) {
         console.log(this.state);
-        alert('A name was submitted: ' + this.state.username);
+        alert('A name was submitted: ' + this.state.user + ' ' + this.state.cellphone + this.state.username + ' ' + this.state.surname);
         event.preventDefault();
-        //console.log
-       
+        //console.log       
     }
     
     onChange(event){
         this.setState({
             [event.target.name] : event.target.value,
         });
+    }
+
+    onClickBack(){
+
     }
 
     render(){
@@ -38,7 +43,7 @@ class AddContact extends Component
                     <div class="col-md-2"/>
                     <div class="col-md-8">
                         <div class="card">
-                            <div className="card-header">
+                            <div class="card-header">
                                 <h4> Add Contact </h4> 
                             </div>
                             <form id="login-form" class="card-body" onSubmit={this.handleAddContact}> 
@@ -47,30 +52,30 @@ class AddContact extends Component
                                         <div class="col-md-2">
                                             <label> User: </label>
                                         </div>
-                                        <div className="col-md-4">
+                                        <div class="col-md-4">
                                             <input name="user" type="text" class="form-control"
                                             value={this.state.user} onChange={this.onChange}/>
                                         </div>
                                         <div class="col-md-2">
-                                            <label> Password: </label>
+                                            <label> Cell Phone: </label>
                                         </div>
-                                        <div className="col-md-4">
-                                            <input name="password" type="password" class="form-control"
-                                            value={this.state.password} onChange={this.onChange}/>
+                                        <div class="col-md-4">
+                                            <input name="cellphone" type="number" class="form-control"
+                                            value={this.state.cellphone} onChange={this.onChange}/>
                                         </div>                                    
                                     </div>
                                     <div class="row pt-2">                                        
                                         <div class="col-md-2">
                                             <label> Name: </label>
                                         </div>
-                                        <div className="col-md-4">
+                                        <div class="col-md-4">
                                             <input name="username" type="text" class="form-control"
                                             value={this.state.username} onChange={this.onChange}/>
                                         </div>
                                         <div class="col-md-2">
                                             <label> Surname: </label>
                                         </div>
-                                        <div className="col-md-4">
+                                        <div class="col-md-4">
                                             <input name="surname" type="text" class="form-control"
                                             value={this.state.surname} onChange={this.onChange}/>
                                         </div>                                        
@@ -79,23 +84,23 @@ class AddContact extends Component
                                         <div class="col-md-2">
                                             <label> Mail: </label>
                                         </div>
-                                        <div className="col-md-4">
+                                        <div class="col-md-4">
                                             <input name="mail" type="text" class="form-control"
                                             value={this.state.mail} onChange={this.onChange}/>
                                         </div>
                                         <div class="col-md-2">
-                                            <label> Confirm Mail: </label>
+                                            <label> Birthdate: </label>
                                         </div>
                                         <div className="col-md-4">
-                                            <input name="mailConfirm" type="text" class="form-control"
-                                            value={this.state.mailConfirm} onChange={this.onChange}/>
+                                            <input name="birthdate" type="date" class="form-control"
+                                            value={this.state.birthdate} onChange={this.onChange}/>
                                         </div>         
                                     </div>
                                     <div class="row pt-2">
                                         <div class="col-md-2">
                                             <label>Country: </label>
                                         </div>
-                                        <div className="col-md-4">
+                                        <div class="col-md-4">
                                             <select name="selectCountry" value={this.state.country} class="form-control" onChange={this.onChange}>
                                                 <option value="#Argentina">Argentina</option>
                                                 <option value="#Brasil">Brasil</option>
@@ -104,16 +109,26 @@ class AddContact extends Component
                                             </select>
                                         </div>
                                         <div class="col-md-2">
-                                            <label>Administrator:</label>
+                                            <label>Genero: </label>
                                         </div>
-                                        <div className="col-md-4">
-                                            <input id="isAdministrator" name="isAdministrator" type="checkbox"/>
+                                        <div class="col-md-4 radio">
+                                            <label>Masculino<input name="isGenero" value="M" type="radio" checked={true}/></label>
+                                            <label>Femenino<input name="isGenero" value="F" type="radio" /></label>
                                         </div>                                        
                                     </div>
                                 </div>
-                                <input className="btn btn-primary center-block" type="submit" value="Submit" />
-                            </form>
-                            
+                                <div class="row pt-2"> 
+                                    <div class="col-md-1"/>
+                                    <div class="col-md-4">
+                                        <input class="btn btn-primary mx-auto" type="submit" value="Submit" />                                       
+                                    </div>
+                                    <div class="col-md-1"/>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-danger mx-auto" type="button" name="Back" onClick={this.onClickBack}> Back </button>
+                                    </div>
+                                    <div class="col-md-2"/>
+                                </div>
+                            </form>                            
                         </div>
                     </div>
                     <div class="col-md-2"/>                    

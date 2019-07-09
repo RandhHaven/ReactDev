@@ -114,7 +114,7 @@ class AccessLogin extends Component
                                 <div className="form-group">
                                     <a href="" onClick={this.onClickRef}>He olvidado mi contraseña</a>  
                                 </div>
-                                <button className="btn btn-primary center-block" type="button" onClick={this.onClickLogin}>Login</button>                                        
+                                <button className="btn btn-primary center-block mx-auto" type="button" onClick={this.onClickLogin}>Login</button>                                        
                             </form>                        
                           
                         </div>
