@@ -10,8 +10,15 @@ class AccessLogin extends Component
     constructor(props)
     {
         super(props);
-        this.state = {email: 'Inicio'};
-        this.accessLogin = firebase.initializeApp(firebaseConfig);
+        this.state = {
+            dbusuarios :[                
+            ]
+        };
+        this.txtUsername = React.createRef();
+        this.txtPassword = React.createRef();
+        this.onClickLogin = this.onClickLogin.bind(this);
+        this.app = firebase.initializeApp(firebaseConfig);
+        this.db = this.app.database().ref().child('dbusuarios');
     }
 
     validations(event)
@@ -19,33 +26,102 @@ class AccessLogin extends Component
         this.value = {value: event.target.value};
     }
 
-    handleClick()
+    onLoginInBase()
     {
-         alert('Usuario Logueado'); 
+        console.log(this.txtUsername.value);
+        this.db.push().set(
+            {
+                usuUsername: this.txtUsername.value,
+                usuPassword: this.txtPassword.value
+            }            
+        );
+        this.txtUsername.value = '';
+        this.txtPassword.value = '';
+        this.txtUsername.focus();
+    }
+
+    IsOkLogin(){
+        return true;
+    }
+
+    onClickLogin(){
+    }
+
+    componentDidMount(event)
+    {
+        const { dbusuarios } = this.state;
+        if (dbusuarios != null)
+        {           
+            this.db.on('child_added', snap =>
+            {
+                dbusuarios.push({
+                    usuId: snap.key.value,
+                    usuUsername: snap.val().usuUsername,
+                    usuPassword: snap.val().usuPassword
+                })
+                this.setState(dbusuarios);
+            });
+        }
     }
 
     onClickRef()
-    {}
+    {
+    }
+
+    onclickRegister()
+    {        
+    }
 
     render()
     {
         return(
-            <form>
-                <div className="AccessLogin-Form">               
-                    <h1>Please enter your username here: </h1>
-                    <br/>
-                    <label> User or Mail: <input type="text"/>
-                    </label>
-                    <br/>
-                    <label> Password: <input type="password"/>
-                    </label>
-                    <br/>                    
-                    <a href="" onClick={this.onClickRef}>He olvidado mi contraseña</a>
-                    <br/>
-                    <br/>                    
-                    <button className="btn btn-success center-block" type="button" onClick={this.handleClick}>Login</button>
-                </div>            
-            </form>
+            <div class="container">
+                <div class="row pt-5">
+                    <div class="col-md-4"/>
+                    <div class="col-md-4">                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h4> LOGIN </h4> 
+                            </div>
+                            <form id="login-form" class="card-body">                                                 
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label> User or Mail: </label>
+                                        </div>
+                                        <div class="col-md-8">  
+                                            <input
+                                            ref ={input => {this.txtUsername = input;}}
+                                            type="text" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                <div className="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label> Password: </label>
+                                        </div>
+                                        <div class="col-md-8">  
+                                            <input
+                                            ref ={input => {this.txtPassword = input;}}
+                                            input type="password" class="form-control"/>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div>
+                                    <a href="" onclick={this.onclickRegister}> No account? Create one!</a>
+                                </div>
+                                <div className="form-group">
+                                    <a href="" onClick={this.onClickRef}>He olvidado mi contraseña</a>  
+                                </div>
+                                <button className="btn btn-primary center-block mx-auto" type="button" onClick={this.onClickLogin}>Login</button>                                        
+                            </form>                        
+                          
+                        </div>
+                    </div>
+                    <div class="col-md-4"/>
+                </div>
+            </div>            
         );
     }
 }

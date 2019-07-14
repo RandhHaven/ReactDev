@@ -7,13 +7,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-       <Navigation/>
+        <Navigation/>
         <footer>
-          <img src={logo} className="App-logo" alt="logo" />         
+          <img src={logo} className="App-logo" alt="logo" />
         </footer>       
       </div>
     );
   }
 }
-
 export default App;

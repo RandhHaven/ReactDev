@@ -4,22 +4,23 @@
   padding: 0;
   overflow: hidden;
   background-color: #333;
+  orientation: landscape;
   }
 
-  .Nav-Orientacion {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }  
+.Nav-Orientacion {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}  
 
-  .Nav-About {    
-    float: rigth;
-  }  
+.Nav-About {    
+  float: rigth;
+}  
 
-  .Nav-Active {
-    background-color: rgb(64, 116, 65);
+.Nav-Active {
+  background-color: rgb(64, 116, 65);
 }
 
 li {
