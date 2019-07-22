@@ -33,7 +33,6 @@ class AddContact extends Component
     }
 
     onClickBack(){
-
     }
 
     render(){

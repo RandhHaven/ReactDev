@@ -10,7 +10,7 @@ class AccessLogin extends Component
     constructor(props)
     {
         super(props);
-        this.state = {
+        this.usuariosLogueados = {
             dbusuarios :[                
             ]
         };
@@ -23,6 +23,7 @@ class AccessLogin extends Component
 
     validations(event)
     {
+        //let variable = [ 'Hello World', 'Goodbye Lenin' ];
         this.value = {value: event.target.value};
     }
 
@@ -44,12 +45,46 @@ class AccessLogin extends Component
         return true;
     }
 
-    onClickLogin(){
+    validUser(event){
+        console.log('nombre:' + event.val().usuUsername);
+        if (event.val().usuUsername === this.txtUsername.value && event.val().usuPassword === this.txtPassword.value){
+            console.log('Usuario Logueado');
+        }
+        else{
+            console.log('Error de inicio de sesion.');
+        }
+    }
+
+    onClickLogin(event){
+        try {
+            let dbusuariosLog = this.db;
+            if (dbusuariosLog != null){
+                dbusuariosLog.on("value", function(usu) {
+                    let usuarios = usu.val();                   
+                    for (let ele in usuarios) {
+                        if (usuarios[ele].usuUsername === this.txtUsername.value && usuarios[ele].usuPassword === this.txtPassword.value){
+                            console.log('Usuario Logueado');
+                        }
+                        else{
+                            console.log('Error de inicio de sesion.');
+                        }
+                    }                    
+                }, function (errorObject) {
+                console.log("The read failed: " + errorObject.code);
+                });                            
+            }
+            else{
+                
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     componentDidMount(event)
     {
-        const { dbusuarios } = this.state;
+        const { dbusuarios } = this.usuariosLogueados;
         if (dbusuarios != null)
         {           
             this.db.on('child_added', snap =>
@@ -66,6 +101,12 @@ class AccessLogin extends Component
 
     onClickRef()
     {
+    }
+
+    onChange(event){
+        this.setState({
+            [event.target.name] : event.target.value,
+        });
     }
 
     onclickRegister()
@@ -114,9 +155,9 @@ class AccessLogin extends Component
                                 <div className="form-group">
                                     <a href="" onClick={this.onClickRef}>He olvidado mi contraseña</a>  
                                 </div>
-                                <button className="btn btn-primary center-block mx-auto" type="button" onClick={this.onClickLogin}>Login</button>                                        
-                            </form>                        
-                          
+                                <button className="btn btn-primary center-block mx-auto" type="button" onClick={this.onClickLogin}>Login</button>
+                                <label id="lblMenaje"  value=""/>                                    
+                            </form>
                         </div>
                     </div>
                     <div class="col-md-4"/>
