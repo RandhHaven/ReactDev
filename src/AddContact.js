@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './AddContact.css'
+import DataGrid from './DataGrid.js';
 
 class AddContact extends Component
 {
@@ -22,8 +23,7 @@ class AddContact extends Component
     handleAddContact(event) {
         console.log(this.state);
         alert('A name was submitted: ' + this.state.user + ' ' + this.state.cellphone + this.state.username + ' ' + this.state.surname);
-        event.preventDefault();
-        //console.log       
+        event.preventDefault();   
     }
     
     onChange(event){
@@ -59,7 +59,7 @@ class AddContact extends Component
                                             <label> Cell Phone: </label>
                                         </div>
                                         <div class="col-md-4">
-                                            <input name="cellphone" type="number" class="form-control"
+                                            <input name="cellphone" type="number" min="0" step="1" pattern="\d+" class="form-control"
                                             value={this.state.cellphone} onChange={this.onChange}/>
                                         </div>                                    
                                     </div>
@@ -119,11 +119,11 @@ class AddContact extends Component
                                 <div class="row pt-2"> 
                                     <div class="col-md-1"/>
                                     <div class="col-md-4">
-                                        <input class="btn btn-primary mx-auto" type="submit" value="Submit" />                                       
+                                        <input class="btn btn-primary" type="submit" value="Add" />                                       
                                     </div>
                                     <div class="col-md-1"/>
                                     <div class="col-md-4">
-                                        <button class="btn btn-danger mx-auto" type="button" name="Back" onClick={this.onClickBack}> Back </button>
+                                        <button class="btn btn-danger" type="button" name="Back" onClick={this.onClickBack}> Back </button>
                                     </div>
                                     <div class="col-md-2"/>
                                 </div>
@@ -131,6 +131,9 @@ class AddContact extends Component
                         </div>
                     </div>
                     <div class="col-md-2"/>                    
+                </div>
+                <div class="row pt-2">
+                    <DataGrid></DataGrid>
                 </div>
             </div>
         )

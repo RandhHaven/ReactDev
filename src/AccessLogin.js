@@ -1,6 +1,6 @@
 import React, {Component} from 'react'; 
 import './AccessLogin.css';
-//import AddContact from './AddContact.js'
+import AddContact from './AddContact.js'
 import firebase from 'firebase'
 import {firebaseConfig} from './config/db_config.js'
 import 'firebase/database'
@@ -10,21 +10,18 @@ class AccessLogin extends Component
     constructor(props)
     {
         super(props);
-        this.usuariosLogueados = {
+        this.state = {
             dbusuarios :[                
-            ]
+            ],
+            nombreUsu : '',
+            passwordUsu: ''
         };
         this.txtUsername = React.createRef();
         this.txtPassword = React.createRef();
-        this.onClickLogin = this.onClickLogin.bind(this);
         this.app = firebase.initializeApp(firebaseConfig);
         this.db = this.app.database().ref().child('dbusuarios');
-    }
-
-    validations(event)
-    {
-        //let variable = [ 'Hello World', 'Goodbye Lenin' ];
-        this.value = {value: event.target.value};
+        this.onChange = this.onChange.bind(this);
+        this.onClickLogin = this.onClickLogin.bind(this);
     }
 
     onLoginInBase()
@@ -46,7 +43,7 @@ class AccessLogin extends Component
     }
 
     validUser(event){
-        console.log('nombre:' + event.val().usuUsername);
+        //console.log('nombre:' + event.val().usuUsername);
         if (event.val().usuUsername === this.txtUsername.value && event.val().usuPassword === this.txtPassword.value){
             console.log('Usuario Logueado');
         }
@@ -57,26 +54,29 @@ class AccessLogin extends Component
 
     onClickLogin(event){
         try {
+            let namesUsu = this.state.nombreUsu;
+            let namePass = this.state.passwordUsu;
+            let encontrado = false;
             let dbusuariosLog = this.db;
             if (dbusuariosLog != null){
                 dbusuariosLog.on("value", function(usu) {
                     let usuarios = usu.val();                   
-                    for (let ele in usuarios) {
-                        if (usuarios[ele].usuUsername === this.txtUsername.value && usuarios[ele].usuPassword === this.txtPassword.value){
-                            console.log('Usuario Logueado');
-                        }
-                        else{
-                            console.log('Error de inicio de sesion.');
-                        }
+                    for (let ele in usuarios) {                        
+                        if (usuarios[ele].usuUsername === namesUsu && usuarios[ele].usuPassword === namePass){
+                            encontrado = true;
+                        }                       
                     }                    
                 }, function (errorObject) {
-                console.log("The read failed: " + errorObject.code);
-                });                            
+                console.log("Error de inicio de session: " + errorObject.code);
+                });                      
+            }
+            if (encontrado){
+                console.log('Usuario Logueado');
+                return <AddContact />;
             }
             else{
-                
+                console.log('Error de inicio de sesion.');
             }
-
         } catch (error) {
             console.error(error);
         }
@@ -84,7 +84,7 @@ class AccessLogin extends Component
 
     componentDidMount(event)
     {
-        const { dbusuarios } = this.usuariosLogueados;
+        const { dbusuarios } = this.state;
         if (dbusuarios != null)
         {           
             this.db.on('child_added', snap =>
@@ -131,9 +131,8 @@ class AccessLogin extends Component
                                             <label> User or Mail: </label>
                                         </div>
                                         <div class="col-md-8">  
-                                            <input
-                                            ref ={input => {this.txtUsername = input;}}
-                                            type="text" class="form-control"/>
+                                            <input name="nombreUsu" type="text" class="form-control"
+                                             value={this.state.nombreUsu} onChange={this.onChange}/>
                                         </div>
                                     </div>
                                 </div>                                
@@ -143,9 +142,8 @@ class AccessLogin extends Component
                                             <label> Password: </label>
                                         </div>
                                         <div class="col-md-8">  
-                                            <input
-                                            ref ={input => {this.txtPassword = input;}}
-                                            input type="password" class="form-control"/>
+                                            <input name="passwordUsu" type="password" class="form-control"
+                                             value={this.state.passwordUsu} onChange={this.onChange}/>
                                         </div>
                                     </div>                                   
                                 </div>
