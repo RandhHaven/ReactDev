@@ -3,7 +3,6 @@
     margin: 2%;
   }  
 
-
 .AddContact-header {  
   margin: 10%;
   color: #03092c;
@@ -18,4 +17,8 @@
 
 .AddContact-col2 {   
   width: 30%;
+}  
+
+.card-body {   
+  width: 100%;
 }  

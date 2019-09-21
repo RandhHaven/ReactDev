@@ -23,7 +23,6 @@ class DataGrid extends Component
     {}
 
     onClickEdit(){
-
     }
 
     onClickDelete(){
