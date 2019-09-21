@@ -38,10 +38,6 @@ class AccessLogin extends Component
         this.txtUsername.focus();
     }
 
-    IsOkLogin(){
-        return true;
-    }
-
     validUser(event){
         //console.log('nombre:' + event.val().usuUsername);
         if (event.val().usuUsername === this.txtUsername.value && event.val().usuPassword === this.txtPassword.value){
@@ -80,6 +76,10 @@ class AccessLogin extends Component
         } catch (error) {
             console.error(error);
         }
+    }
+
+    IsOkLogin(){
+        return true;
     }
 
     componentDidMount(event)
