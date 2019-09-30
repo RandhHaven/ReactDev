@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import './DataGrid.css';
-import firebase from 'firebase';
-import {firebaseConfig} from './config/db_config.js';
-import 'firebase/database';
+import React, { Component } from 'react'
+import './DataGrid.css'
+import firebase from 'firebase'
+import {firebaseConfig} from './config/db_config.js'
+import 'firebase/database'
 
 class DataGrid extends Component
 {
@@ -17,6 +17,10 @@ class DataGrid extends Component
         };
         this.app = firebase.initializeApp(firebaseConfig);
         this.db = this.app.database().ref().child('dbusuarios');
+
+        this.state1 = {
+            tasks: ['task1', 'task2', 'task3', 'task4', 'task5', 'task6'],
+          };
     }
 
     componentDidMount(event)
@@ -26,13 +30,12 @@ class DataGrid extends Component
     }
 
     onClickDelete(){
-
     }
 
     render(){
+        const { tasks } = this.state1;
         return(
             <div class="row pt-2">
-
                 <table>
                     <thead>
                         <tr>
@@ -56,7 +59,11 @@ class DataGrid extends Component
 
                     </tbody>
                 </table>
+                <div className="grid-Data">
+                    {tasks}
+                </div>                
             </div>
+           
         )
     };
 }

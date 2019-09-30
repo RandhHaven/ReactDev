@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './AddContact.css'
-
 import DataGrid from './DataGrid.js';
 
 class AddContact extends Component
@@ -19,9 +18,7 @@ class AddContact extends Component
         };
         this.onChange = this.onChange.bind(this);
         this.handleAddContact = this.handleAddContact.bind(this);
-
         this.isNumberKey = this.isNumberKey.bind(this);
-
     }
 
     handleAddContact(event) {

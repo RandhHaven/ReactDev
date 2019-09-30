@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import './Home.css'
-import imagen1 from './Imagenes/agenda6.jpg';
-import imagen2 from './Imagenes/agenda5.png';
+import imagen1 from './Imagenes/agenda1.jpg';
+import imagen2 from './Imagenes/agenda3.jpg';
 import imagen3 from './Imagenes/agenda6.jpg';
-
 class Home extends Component
 {  
     onClickRef()
@@ -13,7 +12,9 @@ class Home extends Component
     {        
         return(            
             <form>
+                
                 <div class="row pt-3">
+                    
                     <div class="container">                    
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                             <div class="carousel-item active">
@@ -41,6 +42,7 @@ class Home extends Component
                             </header>
                             <div class="row">
                                 <div class="col-md-4 style-widh=100px">
+                                    <h3>Guarde contactos en su Agenda Electronica</h3>
                                     <label> Hay cuatro razones principales por las que deberías tener un mensaje de bienvenida en tu arsenal de marketing:
                                         Porque los mensajes de bienvenida tienen una tasa de apertura un 86% superior y un CTR un 196% más alto que los demás emails normales (Social Mouths).
                                         Para dar una primera buena impresión y empezar la relación con el pie derecho.
@@ -49,6 +51,7 @@ class Home extends Component
                                     </label>
                                 </div>
                                 <div class="col-md-4 body-card">
+                                    <h3>Guarde contactos en su Agenda Electronica</h3>
                                     <label> Hay cuatro razones principales por las que deberías tener un mensaje de bienvenida en tu arsenal de marketing:
                                         Porque los mensajes de bienvenida tienen una tasa de apertura un 86% superior y un CTR un 196% más alto que los demás emails normales (Social Mouths).
                                         Para dar una primera buena impresión y empezar la relación con el pie derecho.
@@ -57,6 +60,7 @@ class Home extends Component
                                     </label>
                                 </div>
                                 <div class="col-md-4 body-card">
+                                    <h3>Guarde contactos en su Agenda Electronica</h3>
                                     <label> Hay cuatro razones principales por las que deberías tener un mensaje de bienvenida en tu arsenal de marketing:
                                         Porque los mensajes de bienvenida tienen una tasa de apertura un 86% superior y un CTR un 196% más alto que los demás emails normales (Social Mouths).
                                         Para dar una primera buena impresión y empezar la relación con el pie derecho.

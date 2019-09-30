@@ -14,8 +14,7 @@ class Menu extends Component{
               <div className="Nav">
                 <li>
                   {menu.description}
-                </li>
-                
+                </li>                
               </div>)
             }
         )
