@@ -5,8 +5,8 @@ import Home from './Home.js';
 import Contact from './AddContact.js';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-class Navigation extends Component {  
- 
+class Navigation extends Component {
+
   onChange(event)
   {
     this.setState({value: event.target.value});

@@ -116,49 +116,49 @@ class AccessLogin extends Component
     render()
     {
         return(
-            <div class="container">
-                <div class="row pt-5">
-                    <div class="col-md-4"/>
-                    <div class="col-md-4">                        
-                        <div class="card">
-                            <div class="card-header">
+            <div className="container">
+                <div className="row pt-5">
+                    <div className="col-md-4"/>
+                    <div className="col-md-4">                        
+                        <div className="card">
+                            <div className="card-header">
                                 <h4> LOGIN </h4> 
                             </div>
-                            <form id="login-form" class="card-body">                                                 
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-4">
+                            <form id="login-form" className="card-body">                                                 
+                                <div className="form-group">
+                                    <div className="row">
+                                        <div className="col-md-4">
                                             <label> User or Mail: </label>
                                         </div>
-                                        <div class="col-md-8">  
-                                            <input name="nombreUsu" type="text" class="form-control"
+                                        <div className="col-md-8">  
+                                            <input name="nombreUsu" type="text" className="form-control"
                                              value={this.state.nombreUsu} onChange={this.onChange}/>
                                         </div>
                                     </div>
                                 </div>                                
                                 <div className="form-group">
-                                    <div class="row">
-                                        <div class="col-md-4">
+                                    <div className="row">
+                                        <div className="col-md-4">
                                             <label> Password: </label>
                                         </div>
-                                        <div class="col-md-8">  
-                                            <input name="passwordUsu" type="password" class="form-control"
+                                        <div className="col-md-8">  
+                                            <input name="passwordUsu" type="password" className="form-control"
                                              value={this.state.passwordUsu} onChange={this.onChange}/>
                                         </div>
                                     </div>                                   
                                 </div>
                                 <div>
-                                    <a href="" onclick={this.onclickRegister}> No account? Create one!</a>
+                                    <a href="" onclick={this.onclickRegister}> Create account</a>
                                 </div>
                                 <div className="form-group">
-                                    <a href="" onClick={this.onClickRef}>He olvidado mi contraseña</a>  
+                                    <a href="" onClick={this.onClickRef}>Forget your password</a>  
                                 </div>
                                 <button className="btn btn-primary center-block mx-auto" type="button" onClick={this.onClickLogin}>Login</button>
                                 <label id="lblMenaje"  value=""/>                                    
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-4"/>
+                    <div className="col-md-4"/>
                 </div>
             </div>            
         );

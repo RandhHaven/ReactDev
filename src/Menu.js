@@ -1,5 +1,6 @@
-import React, { Component }from 'react';
-import {menus} from './Menus.json';
+import React, { Component } from 'react';
+import { menus } from './Menus.json';
+import './Menu.css'
 
 class Menu extends Component{
 
@@ -14,7 +15,7 @@ class Menu extends Component{
               <div className="Nav">
                 <li>
                   {menu.description}
-                </li>                
+                </li>
               </div>)
             }
         )
