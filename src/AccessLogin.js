@@ -1,19 +1,17 @@
-import React, {Component} from 'react'; 
+import React, { Component } from 'react';
 import './AccessLogin.css';
 import AddContact from './AddContact.js'
 import firebase from 'firebase'
-import {firebaseConfig} from './config/db_config.js'
+import { firebaseConfig } from './config/db_config.js'
 import 'firebase/database'
 
-class AccessLogin extends Component
-{
-    constructor(props)
-    {
+class AccessLogin extends Component {
+    constructor(props) {
         super(props);
         this.state = {
-            dbusuarios :[                
+            dbusuarios: [
             ],
-            nombreUsu : '',
+            nombreUsu: '',
             passwordUsu: ''
         };
         this.txtUsername = React.createRef();
@@ -24,53 +22,52 @@ class AccessLogin extends Component
         this.onClickLogin = this.onClickLogin.bind(this);
     }
 
-    onLoginInBase()
-    {
+    onLoginInBase() {
         console.log(this.txtUsername.value);
         this.db.push().set(
             {
                 usuUsername: this.txtUsername.value,
                 usuPassword: this.txtPassword.value
-            }            
+            }
         );
         this.txtUsername.value = '';
         this.txtPassword.value = '';
         this.txtUsername.focus();
     }
 
-    validUser(event){
+    validUser(event) {
         //console.log('nombre:' + event.val().usuUsername);
-        if (event.val().usuUsername === this.txtUsername.value && event.val().usuPassword === this.txtPassword.value){
+        if (event.val().usuUsername === this.txtUsername.value && event.val().usuPassword === this.txtPassword.value) {
             console.log('Usuario Logueado');
         }
-        else{
+        else {
             console.log('Error de inicio de sesion.');
         }
     }
 
-    onClickLogin(event){
+    onClickLogin(event) {
         try {
             let namesUsu = this.state.nombreUsu;
             let namePass = this.state.passwordUsu;
             let encontrado = false;
             let dbusuariosLog = this.db;
-            if (dbusuariosLog != null){
-                dbusuariosLog.on("value", function(usu) {
-                    let usuarios = usu.val();                   
-                    for (let ele in usuarios) {                        
-                        if (usuarios[ele].usuUsername === namesUsu && usuarios[ele].usuPassword === namePass){
+            if (dbusuariosLog != null) {
+                dbusuariosLog.on("value", function (usu) {
+                    let usuarios = usu.val();
+                    for (let ele in usuarios) {
+                        if (usuarios[ele].usuUsername === namesUsu && usuarios[ele].usuPassword === namePass) {
                             encontrado = true;
-                        }                       
-                    }                    
+                        }
+                    }
                 }, function (errorObject) {
-                console.log("Error de inicio de session: " + errorObject.code);
-                });                      
+                    console.log("Error de inicio de session: " + errorObject.code);
+                });
             }
-            if (encontrado){
+            if (encontrado) {
                 console.log('Usuario Logueado');
                 return <AddContact />;
             }
-            else{
+            else {
                 console.log('Error de inicio de sesion.');
             }
         } catch (error) {
@@ -78,17 +75,14 @@ class AccessLogin extends Component
         }
     }
 
-    IsOkLogin(){
+    IsOkLogin() {
         return true;
     }
 
-    componentDidMount(event)
-    {
+    componentDidMount(event) {
         const { dbusuarios } = this.state;
-        if (dbusuarios != null)
-        {           
-            this.db.on('child_added', snap =>
-            {
+        if (dbusuarios != null) {
+            this.db.on('child_added', snap => {
                 dbusuarios.push({
                     usuId: snap.key.value,
                     usuUsername: snap.val().usuUsername,
@@ -99,68 +93,65 @@ class AccessLogin extends Component
         }
     }
 
-    onClickRef()
-    {
+    onClickRef() {
     }
 
-    onChange(event){
+    onChange(event) {
         this.setState({
-            [event.target.name] : event.target.value,
+            [event.target.name]: event.target.value,
         });
     }
 
-    onclickRegister()
-    {        
+    onclickRegister() {
     }
 
-    render()
-    {
-        return(
+    render() {
+        return (
             <div className="container">
                 <div className="row pt-5">
-                    <div className="col-md-4"/>
-                    <div className="col-md-4">                        
+                    <div className="col-md-4" />
+                    <div className="col-md-4">
                         <div className="card">
                             <div className="card-header">
-                                <h4> LOGIN </h4> 
+                                <h4> LOGIN </h4>
                             </div>
-                            <form id="login-form" className="card-body">                                                 
+                            <form id="login-form" className="card-body">
                                 <div className="form-group">
                                     <div className="row">
                                         <div className="col-md-4">
                                             <label> User or Mail: </label>
                                         </div>
-                                        <div className="col-md-8">  
+                                        <div className="col-md-8">
                                             <input name="nombreUsu" type="text" className="form-control"
-                                             value={this.state.nombreUsu} onChange={this.onChange}/>
+                                                value={this.state.nombreUsu} onChange={this.onChange} />
                                         </div>
                                     </div>
-                                </div>                                
+                                </div>
                                 <div className="form-group">
                                     <div className="row">
                                         <div className="col-md-4">
                                             <label> Password: </label>
                                         </div>
-                                        <div className="col-md-8">  
+                                        <div className="col-md-8">
                                             <input name="passwordUsu" type="password" className="form-control"
-                                             value={this.state.passwordUsu} onChange={this.onChange}/>
+                                                value={this.state.passwordUsu} onChange={this.onChange} />
                                         </div>
-                                    </div>                                   
+                                    </div>
                                 </div>
                                 <div>
                                     <a href="" onclick={this.onclickRegister}> Create account</a>
                                 </div>
                                 <div className="form-group">
-                                    <a href="" onClick={this.onClickRef}>Forget your password</a>  
+                                    <a href="" onClick={this.onClickRef}>Forget your password</a>
                                 </div>
                                 <button className="btn btn-primary center-block mx-auto" type="button" onClick={this.onClickLogin}>Login</button>
-                                <label id="lblMenaje"  value=""/>                                    
+                                <label id="lblMenaje" value="" />
                             </form>
                         </div>
                     </div>
-                    <div className="col-md-4"/>
+                    <div className="col-md-4" />
                 </div>
-            </div>            
+            </div>
         );
     }
 }

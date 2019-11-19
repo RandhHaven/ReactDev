@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 import './DataGrid.css'
 import firebase from 'firebase'
-import {firebaseConfig} from './config/db_config.js'
+import { firebaseConfig } from './config/db_config.js'
 import 'firebase/database'
 
-class DataGrid extends Component
-{
-    constructor(props)
-    {
+class DataGrid extends Component {
+    constructor(props) {
         super(props);
         this.state = {
-            contacts :[
-                { noteId:1, noteContent:' contenido nota 1'},
-                { noteId:2, noteContent:' contenido nota 2'},
-                { noteId:3, noteContent:' contenido nota 3'}
+            contacts: [
+                { noteId: 1, noteContent: ' contenido nota 1' },
+                { noteId: 2, noteContent: ' contenido nota 2' },
+                { noteId: 3, noteContent: ' contenido nota 3' }
             ]
         };
         this.app = firebase.initializeApp(firebaseConfig);
@@ -21,25 +19,25 @@ class DataGrid extends Component
 
         this.state1 = {
             tasks: ['task1', 'task2', 'task3', 'task4', 'task5', 'task6'],
-          };
+        };
     }
 
-    componentDidMount(event){
+    componentDidMount(event) {
 
     }
 
-    onClickEdit(){
+    onClickEdit() {
     }
 
-    onClickDelete(){
+    onClickDelete() {
     }
 
-    render(){
+    render() {
         const { tasks } = this.state;
-        return(
+        return (
             <div>
                 <div class="row pt-2">
-                    <table>
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -62,13 +60,13 @@ class DataGrid extends Component
 
                         </tbody>
                     </table>
-                      
+
                 </div>
                 <div className="grid-item">
                     {tasks}
-                </div>  
+                </div>
             </div>
-                   
+
         )
     };
 }

@@ -1,25 +1,23 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './Home.css'
 import imagen1 from './Imagenes/agenda1.jpg';
 import imagen2 from './Imagenes/agenda3.jpg';
 import imagen3 from './Imagenes/agenda6.jpg';
-class Home extends Component
-{
-    render()
-    {        
-        return(            
-            <form>                
-                <div className="row pt-3">                    
-                    <div className="container">                    
+class Home extends Component {
+    render() {
+        return (
+            <form>
+                <div className="row pt-3">
+                    <div className="container">
                         <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                             <div className="carousel-item active">
-                                <img className="img-fluid" src={imagen1} alt="First slide"/>
+                                <img className="img-fluid" src={imagen1} alt="First slide" />
                             </div>
                             <div className="carousel-item">
-                                <img className="img-fluid" src={imagen2} alt="Second slide"/>
+                                <img className="img-fluid" src={imagen2} alt="Second slide" />
                             </div>
                             <div className="carousel-item">
-                            <   img src={imagen3} alt="Third slide"/>
+                                <   img src={imagen3} alt="Third slide" />
                             </div>
                             <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -28,11 +26,11 @@ class Home extends Component
                             <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
                                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span className="sr-only">Next</span>
-                            </a>                        
+                            </a>
                         </div>
 
                         <div>
-                            <header>                            
+                            <header>
                                 <h4>Page Contacts</h4>
                             </header>
                             <div className="row">
@@ -62,11 +60,11 @@ class Home extends Component
                                         Para evitar que los clientes se den de baja porque se olvidan de a qué se suscribieron.
                                         Para hacer la primera segmentación básica de los clientes. Puedes pedir alguna preferencia para recoger una primera información sobre sus gustos.
                                     </label>
-                                </div>    
-                            </div>                                             
+                                </div>
+                            </div>
                         </div>
-                    </div>   
-                </div>        
+                    </div>
+                </div>
             </form>
         );
     }
