@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import './AddContact.css'
 import DataGrid from './DataGrid.js';
+import firebase from 'firebase'
+import { firebaseConfig } from './config/db_config.js'
+import 'firebase/database'
 
 class AddContact extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            dbContacts: [
+            ],
             user: '',
             username: '',
             cellphone: '',
@@ -17,11 +22,26 @@ class AddContact extends Component {
         this.onChange = this.onChange.bind(this);
         this.handleAddContact = this.handleAddContact.bind(this);
         this.isNumberKey = this.isNumberKey.bind(this);
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        this.database = firebase.database().ref().child('dbContacts');
     }
 
     handleAddContact(event) {
         console.log(this.state);
-        alert('A name was submitted: ' + this.state.user + ' ' + this.state.cellphone + this.state.username + ' ' + this.state.surname);
+        
+        this.database.push().set(
+            {
+                user: this.state.user.value,
+                userName: this.state.username.value,
+                userLastName: this.state.surname.value,
+                userCellPhone: this.state.cellphone.value,
+                userMail: this.state.mail.value,
+                userDate: this.state.date.value,
+                userCountry: this.state.selectCountry.value
+            }
+        );
         event.preventDefault();
     }
 
@@ -29,6 +49,22 @@ class AddContact extends Component {
         this.setState({
             [event.target.name]: event.target.value,
         });
+    }
+
+    componentDidMount(event){
+        const { dbContacts } = this.state;
+        if (dbContacts != null) {
+            this.database.on('child_added', snap => {
+                dbContacts.push({
+                    userId: snap.key.value,
+                    user: snap.user.value,
+                    userName: snap.val().username,
+                    userLastName: snap.val().userLastName,
+                    userMail: snap.val().mail.value,
+                })
+                this.setState(dbContacts);
+            });
+        }
     }
 
     isNumberKey(evt) {
@@ -43,6 +79,13 @@ class AddContact extends Component {
     }
 
     onClickBack() {
+    }
+
+    onClickAdd(){
+        //Agrega el contacto a la base
+        //this.db.push.set(
+
+        //);
     }
 
     render() {
@@ -129,7 +172,7 @@ class AddContact extends Component {
                                 <div class="row pt-2">
                                     <div class="col-md-1" />
                                     <div class="col-md-4">
-                                        <input class="btn btn-primary" type="submit" value="Add" />
+                                        <input class="btn btn-primary" type="submit" value="Add"/>
                                     </div>
                                     <div class="col-md-1" />
                                     <div class="col-md-4">

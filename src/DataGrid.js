@@ -14,8 +14,10 @@ class DataGrid extends Component {
                 { noteId: 3, noteContent: ' contenido nota 3' }
             ]
         };
-        this.app = firebase.initializeApp(firebaseConfig);
-        this.db = this.app.database().ref().child('dbContacts');
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        this.db = firebase.database().ref().child('dbGrids');
 
         this.state1 = {
             tasks: ['task1', 'task2', 'task3', 'task4', 'task5', 'task6'],

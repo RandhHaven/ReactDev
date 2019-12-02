@@ -139,10 +139,10 @@ class AccessLogin extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <a href="" onclick={this.onclickRegister}> Create account</a>
+                                    <a href="#" onclick={this.onclickRegister}> Create account</a>
                                 </div>
                                 <div className="form-group">
-                                    <a href="" onClick={this.onClickRef}>Forget your password</a>
+                                    <a href="#" onClick={this.onClickRef}>Forget your password</a>
                                 </div>
                                 <button className="btn btn-primary center-block mx-auto" type="button" onClick={this.onClickLogin}>Login</button>
                                 <label id="lblMenaje" value="" />

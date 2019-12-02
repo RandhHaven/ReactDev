@@ -3,6 +3,7 @@ import './Home.css'
 import imagen1 from './Imagenes/agenda1.jpg';
 import imagen2 from './Imagenes/agenda3.jpg';
 import imagen3 from './Imagenes/agenda6.jpg';
+
 class Home extends Component {
     render() {
         return (
@@ -40,7 +41,8 @@ class Home extends Component {
                                         Porque los mensajes de bienvenida tienen una tasa de apertura un 86% superior y un CTR un 196% más alto que los demás emails normales (Social Mouths).
                                         Para dar una primera buena impresión y empezar la relación con el pie derecho.
                                         Para evitar que los clientes se den de baja porque se olvidan de a qué se suscribieron.
-                                        Para hacer la primera segmentación básica de los clientes. Puedes pedir alguna preferencia para recoger una primera información sobre sus gustos.
+                                        Para hacer la primera segmentación básica de los clientes. 
+                                        Puedes pedir alguna preferencia para recoger una primera información sobre sus gustos.
                                     </label>
                                 </div>
                                 <div className="col-md-4 body-card">
