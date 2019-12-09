@@ -4,7 +4,7 @@ import AccesLogin from './AccessLogin.js';
 import Home from './Home.js';
 import Contact from './AddContact.js';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
+import Menu from './Menu.js';
 class Navigation extends Component {
 
   onChange(event)
@@ -19,6 +19,7 @@ class Navigation extends Component {
   render(){
     return(
       <form>
+        <Menu/>
         <ul className="Nav">
           <li><a className="Nav-Orientacion" href='\Home'>Home</a></li>
           <li><a className="Nav-Orientacion" href="#news">News</a></li>

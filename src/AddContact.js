@@ -4,6 +4,7 @@ import DataGrid from './DataGrid.js';
 import firebase from 'firebase'
 import { firebaseConfig } from './config/db_config.js'
 import 'firebase/database'
+import AccessLogin from './AccessLogin';
 
 class AddContact extends Component {
     constructor(props) {
@@ -11,37 +12,33 @@ class AddContact extends Component {
         this.state = {
             dbContacts: [
             ],
-            user: '',
+            userNick: '',
             username: '',
-            cellphone: '',
-            surname: '',
+            userLastName: '',
+            cellphone: '',           
             mail: '',
-            date: '',
-            selectCountry: ''
+            birthdate: '',
+            country: ''
         };
         this.onChange = this.onChange.bind(this);
         this.handleAddContact = this.handleAddContact.bind(this);
         this.isNumberKey = this.isNumberKey.bind(this);
         if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        }
-        this.database = firebase.database().ref().child('dbContacts');
+            this.app = firebase.initializeApp(firebaseConfig);
+            this.db = this.app.database().ref().child('dbContacts');
+        }        
     }
 
-    handleAddContact(event) {
-        console.log(this.state);
-        
-        this.database.push().set(
-            {
-                user: this.state.user.value,
-                userName: this.state.username.value,
-                userLastName: this.state.surname.value,
-                userCellPhone: this.state.cellphone.value,
-                userMail: this.state.mail.value,
-                userDate: this.state.date.value,
-                userCountry: this.state.selectCountry.value
-            }
-        );
+    handleAddContact(event) {                
+        this.db.push().set({
+            userNickDb: this.state.userNick,
+            userUserName: this.state.username,
+            userLastNameDb: this.state.userLastName,
+            userCellPhoneDb: this.state.cellphone,            
+            userMailDb: this.state.mail,
+            userBirthdateDb: this.state.birthdate,
+            userCountryDb: this.state.country
+        });
         event.preventDefault();
     }
 
@@ -54,13 +51,16 @@ class AddContact extends Component {
     componentDidMount(event){
         const { dbContacts } = this.state;
         if (dbContacts != null) {
-            this.database.on('child_added', snap => {
+            this.db.on('child_added', snap => {
                 dbContacts.push({
                     userId: snap.key.value,
-                    user: snap.user.value,
-                    userName: snap.val().username,
-                    userLastName: snap.val().userLastName,
-                    userMail: snap.val().mail.value,
+                    userDb: snap.val().userDb,
+                    userNameDb: snap.val().userNameDb,
+                    userLastNameDb: snap.val().userLastNameDb,
+                    userCellPhoneDb: snap.val().userCellPhoneDb,
+                    userMailDb: snap.val().userMailDb,
+                    userBirthdateDb: snap.val().userBirthdateDb,
+                    userCountryDb: snap.val().userCountryDb
                 })
                 this.setState(dbContacts);
             });
@@ -79,13 +79,7 @@ class AddContact extends Component {
     }
 
     onClickBack() {
-    }
-
-    onClickAdd(){
-        //Agrega el contacto a la base
-        //this.db.push.set(
-
-        //);
+        return (<AccessLogin/>);
     }
 
     render() {
@@ -105,8 +99,8 @@ class AddContact extends Component {
                                             <label> User: </label>
                                         </div>
                                         <div class="col-md-4">
-                                            <input name="user" type="text" class="form-control"
-                                                value={this.state.user} onChange={this.onChange} />
+                                            <input name="userNick" type="text" class="form-control"
+                                                value={this.state.userNick} onChange={this.onChange} />
                                         </div>
                                         <div class="col-md-2">
                                             <label> Cell Phone: </label>
@@ -122,14 +116,14 @@ class AddContact extends Component {
                                         </div>
                                         <div class="col-md-4">
                                             <input name="username" type="text" class="form-control"
-                                                value={this.state.username} onChange={this.onChange} />
+                                                value={this.state.userName} onChange={this.onChange} />
                                         </div>
                                         <div class="col-md-2">
                                             <label> Surname: </label>
                                         </div>
                                         <div class="col-md-4">
-                                            <input name="surname" type="text" class="form-control"
-                                                value={this.state.surname} onChange={this.onChange} />
+                                            <input name="userLastName" type="text" class="form-control"
+                                                value={this.state.userLastName} onChange={this.onChange} />
                                         </div>
                                     </div>
                                     <div class="row pt-2">
@@ -153,7 +147,7 @@ class AddContact extends Component {
                                             <label>Country: </label>
                                         </div>
                                         <div class="col-md-4">
-                                            <select name="selectCountry" value={this.state.country} class="form-control" onChange={this.onChange}>
+                                            <select name="country" value={this.state.country} class="form-control" onChange={this.onChange}>
                                                 <option value="#Argentina">Argentina</option>
                                                 <option value="#Brasil">Brasil</option>
                                                 <option value="#Alemania">Alemania</option>

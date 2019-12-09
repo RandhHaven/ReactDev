@@ -22,7 +22,7 @@ class Menu extends Component{
 
         return(
             <form>
-              <ul class="Container">
+              <ul className="Nav">
                 <a className="Nav-Orientacion" href="">
                   { menus }
                 </a>

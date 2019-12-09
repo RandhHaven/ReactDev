@@ -14,36 +14,15 @@ class AccessLogin extends Component {
             nombreUsu: '',
             passwordUsu: ''
         };
-        this.txtUsername = React.createRef();
-        this.txtPassword = React.createRef();
-        this.app = firebase.initializeApp(firebaseConfig);
-        this.db = this.app.database().ref().child('dbusuarios');
+       
         this.onChange = this.onChange.bind(this);
         this.onClickLogin = this.onClickLogin.bind(this);
-    }
-
-    onLoginInBase() {
-        console.log(this.txtUsername.value);
-        this.db.push().set(
-            {
-                usuUsername: this.txtUsername.value,
-                usuPassword: this.txtPassword.value
-            }
-        );
-        this.txtUsername.value = '';
-        this.txtPassword.value = '';
-        this.txtUsername.focus();
-    }
-
-    validUser(event) {
-        //console.log('nombre:' + event.val().usuUsername);
-        if (event.val().usuUsername === this.txtUsername.value && event.val().usuPassword === this.txtPassword.value) {
-            console.log('Usuario Logueado');
+        this.onLoginInBase = this.onLoginInBase.bind(this);
+        if (!firebase.apps.length) {
+            this.app = firebase.initializeApp(firebaseConfig);
+            this.db = this.app.database().ref().child('dbusuarios');
         }
-        else {
-            console.log('Error de inicio de sesion.');
-        }
-    }
+    } 
 
     onClickLogin(event) {
         try {
@@ -75,8 +54,19 @@ class AccessLogin extends Component {
         }
     }
 
-    IsOkLogin() {
-        return true;
+    onLoginInBase() {
+        console.log(this.state.passwordUsu.value);
+        let namesUsu = this.state.nombreUsu;
+        let namePass = this.state.passwordUsu;
+        this.db.push().set(
+            {
+                usuUsername: this.state.nombreUsu,
+                usuPassword: namePass
+            }
+        );
+        this.state.passwordUsu = '';
+        this.state.nombreUsu = '';
+        this.state.nombreUsu.focus();
     }
 
     componentDidMount(event) {
@@ -144,7 +134,7 @@ class AccessLogin extends Component {
                                 <div className="form-group">
                                     <a href="#" onClick={this.onClickRef}>Forget your password</a>
                                 </div>
-                                <button className="btn btn-primary center-block mx-auto" type="button" onClick={this.onClickLogin}>Login</button>
+                                <button className="btn btn-primary center-block mx-auto" type="button" onClick={this.onLoginInBase}>Login</button>
                                 <label id="lblMenaje" value="" />
                             </form>
                         </div>
