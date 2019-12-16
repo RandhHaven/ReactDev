@@ -4,30 +4,35 @@ import AccesLogin from './AccessLogin.js';
 import Home from './Home.js';
 import Contact from './AddContact.js';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Menu from './Menu.js';
+
 class Navigation extends Component {
 
-  onChange(event)
-  {
-    this.setState({value: event.target.value});
+  onChange(event) {
+    this.setState({ value: event.target.value });
   }
 
-  onResponseNavigation(event)
-  {
+  onResponseNavigation(event) {
   }
   
   render(){
     return(
       <form>
-        <Menu/>
-        <ul className="Nav">
-          <li><a className="Nav-Orientacion" href='\Home'>Home</a></li>
-          <li><a className="Nav-Orientacion" href="#news">News</a></li>
-          <li><a className="Nav-Orientacion" href="\Contact">Contact</a></li>
-          <li className="Nav-About">
-            <a className="Nav-Active" href="\AccesLogin">Login</a>
-          </li>
-        </ul>
+        <nav className="Nav">
+          <ul className="Nav-Menu">
+            <li><a className="Nav-Orientacion" href='\Home'>Home</a></li>
+            <li><a className="Nav-Orientacion" href="#news">News</a></li>
+            <li><a className="Nav-Orientacion" href="\Contact">Contact</a>
+              <ul className="Nav-Submenu">
+                <li><a href="#">Servicio #1</a></li>
+                <li><a href="#">Servicio #2</a></li>
+                <li><a href="#">Servicio #3</a></li>
+              </ul>
+            </li>
+            <li className="Nav-About">
+              <a className="Nav-Active" href="\AccesLogin">Login</a>
+            </li>
+          </ul>
+        </nav>
         <BrowserRouter>
           <Switch>
             <Route path='/Home' component={Home} />

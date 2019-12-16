@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Home.css'
-import imagen1 from './Imagenes/agenda1.jpg';
+import imagen1 from './Imagenes/agenda2.png';
 import imagen2 from './Imagenes/agenda3.jpg';
 import imagen3 from './Imagenes/agenda6.jpg';
 
@@ -36,7 +36,7 @@ class Home extends Component {
                             </header>
                             <div className="row">
                                 <div className="col-md-4 style-widh=100px">
-                                    <h3>Guarde contactos en su Agenda Electronica</h3>
+                                    <h3>Save contacts in the electronic phonebook</h3>
                                     <label> Hay cuatro razones principales por las que deberías tener un mensaje de bienvenida en tu arsenal de marketing:
                                         Porque los mensajes de bienvenida tienen una tasa de apertura un 86% superior y un CTR un 196% más alto que los demás emails normales (Social Mouths).
                                         Para dar una primera buena impresión y empezar la relación con el pie derecho.

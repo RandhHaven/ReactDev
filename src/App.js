@@ -4,11 +4,12 @@ import './App.css';
 import Navigation from './Navigation';
 
 class App extends Component {
+  
   render() {
     return (
       <div className="App">
         <Navigation />
-        <footer>
+        <footer className="App-footer">
           <img src={logo} className="App-logo" alt="logo" />
         </footer>
       </div>

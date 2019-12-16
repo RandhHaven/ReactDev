@@ -1,12 +1,21 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
 .Nav {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
-  orientation: landscape;
+  background-color: rgb(48, 23, 23); 
   }
 
+  .Nav-Menu > li > a{
+    text-decoration: none;
+  }
+  
+  
 .Nav-Orientacion {
   display: block;
   color: white;
@@ -20,7 +29,7 @@
 }  
 
 .Nav-Active {
-  background-color: rgb(64, 116, 65);
+  background-color:  rgb(64, 116, 65);
 }
 
 li {
@@ -35,6 +44,26 @@ li a {
   text-decoration: none;
 }
 
-li a:hover:not(.active) {
-  background-color: #111;
+/* Submenu*/
+
+.Nav-Submenu{
+	position: absolute;
+	background: #333333;
+  visibility: hidden;
+  width: 120px;
+	opacity: 0;
+	transition: opacity 1.5s;
+}
+
+.Nav-Submenu li a{
+	display: block;
+	padding: 15px;
+	color: #fff;
+	font-family: 'Open sans';
+	text-decoration: none;
+}
+
+.Nav-Menu li:hover .Nav-Submenu{
+	visibility: visible;
+	opacity: 1;
 }
