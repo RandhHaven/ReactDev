@@ -29,17 +29,36 @@ class AddContact extends Component {
         }        
     }
 
-    handleAddContact(event) {                
-        this.db.push().set({
-            userNickDb: this.state.userNick,
-            userUserName: this.state.username,
-            userLastNameDb: this.state.userLastName,
-            userCellPhoneDb: this.state.cellphone,            
-            userMailDb: this.state.mail,
-            userBirthdateDb: this.state.birthdate,
-            userCountryDb: this.state.country
-        });
+    handleAddContact(event) {
+        if (this.validInsertContacts()){
+            this.db.push().set({
+                userNickDb: this.state.userNick,
+                userUserName: this.state.username,
+                userLastNameDb: this.state.userLastName,
+                userCellPhoneDb: this.state.cellphone,            
+                userMailDb: this.state.mail,
+                userBirthdateDb: this.state.birthdate,
+                userCountryDb: this.state.country
+            });
+        }
+        else{
+            
+        }    
+        updateContacts();
         event.preventDefault();
+    }
+
+    validInsertContacts(){
+        return (this.state.username != "" && this.state.userNick != "" && this.state.userLastName != "") && 
+        validBirthdate();
+    }
+
+    validBirthdate(){
+        return true;
+    }
+
+    updateContacts(){
+
     }
 
     onChange(event) {

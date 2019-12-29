@@ -3,6 +3,7 @@ import './Home.css'
 import imagen1 from './Imagenes/agenda2.png';
 import imagen2 from './Imagenes/agenda3.jpg';
 import imagen3 from './Imagenes/agenda6.jpg';
+import { Slideshow } from './Slider'
 
 class Home extends Component {
     render() {
@@ -29,7 +30,11 @@ class Home extends Component {
                                 <span className="sr-only">Next</span>
                             </a>
                         </div>
-
+                        <div>
+                        <Slideshow>
+                            
+                        </Slideshow>
+                        </div>
                         <div>
                             <header>
                                 <h4>Page Contacts</h4>
