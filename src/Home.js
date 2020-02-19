@@ -8,9 +8,12 @@ import { Slideshow } from './Slider'
 class Home extends Component {
     render() {
         return (
-            <form>
-                <div className="row pt-3">
-                    <div className="container">
+            <div className="row pt-3">
+                
+                <div className="container">
+                    <div>
+                        <h4>Contacts Calender</h4>
+                    </div>
                         <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                             <div className="carousel-item active">
                                 <img className="img-fluid" src={imagen1} alt="First slide" />
@@ -30,11 +33,8 @@ class Home extends Component {
                                 <span className="sr-only">Next</span>
                             </a>
                         </div>
-                        <div>
-                        <Slideshow>
-                            
-                        </Slideshow>
-                        </div>
+                        
+                        <Slideshow/>
                         <div>
                             <header>
                                 <h4>Page Contacts</h4>
@@ -71,8 +71,7 @@ class Home extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
+            </div>
         );
     }
 }

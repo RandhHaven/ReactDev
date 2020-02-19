@@ -1,4 +1,8 @@
-.Home-Form {    
-    position: relative;
-    color: white;
+.Home-Form { 
+    color: white
+  }
+
+  .h4 {
+    margin-bottom: 1rem;
+    color: white
   }

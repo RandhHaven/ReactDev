@@ -49,8 +49,7 @@ class AddContact extends Component {
     }
 
     validInsertContacts(){
-        return (this.state.username != "" && this.state.userNick != "" && this.state.userLastName != "") && 
-        validBirthdate();
+        return (this.state.username != "" && this.state.userNick != "" && this.state.userLastName != "");
     }
 
     validBirthdate(){
