@@ -35,7 +35,6 @@ class Contact extends Component {
                     <div class="col-md-2" />
                     <form></form>
                 </div>
-
             </div>
         )
     }

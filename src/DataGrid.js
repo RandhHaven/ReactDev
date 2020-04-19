@@ -68,7 +68,6 @@ class DataGrid extends Component {
                     {tasks}
                 </div>
             </div>
-
         )
     };
 }
